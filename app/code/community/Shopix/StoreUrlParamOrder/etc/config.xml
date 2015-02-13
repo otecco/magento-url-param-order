@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Shopix_StoreUrlParamOrder - Store URL Parameter Values with Order
+    Copyright (C) 2015 Shopix Pty Ltd (http://www.shopix.com.au)
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<config>
+    <modules>
+        <Shopix_StoreUrlParamOrder>
+            <version>0.1.0</version>
+        </Shopix_StoreUrlParamOrder>
+    </modules>
+    
+    <global>
+        <helpers>
+            <storeurlparamorder>
+                <class>Shopix_StoreUrlParamOrder_Helper</class>
+            </storeurlparamorder>
+        </helpers>
+
+        <blocks>
+            <adminhtml>
+                <rewrite>
+                    <sales_order_grid>Shopix_StoreUrlParamOrder_Block_Adminhtml_Sales_Order_Grid</sales_order_grid>
+                </rewrite>
+            </adminhtml>
+        </blocks>
+
+        <events>
+            <controller_front_send_response_before>
+                <observers>
+                    <shopix_storeurlparamorder_page_load>
+                        <type>singleton</type>
+                        <class>Shopix_StoreUrlParamOrder_Model_Observer</class>
+                        <method>controllerFrontSendResponseBefore</method>
+                    </shopix_storeurlparamorder_page_load>
+                </observers>
+            </controller_front_send_response_before>
+        </events>         
+
+        <fieldsets>
+            <sales_convert_quote>
+                <storeurlparamorder_data>
+                    <to_order>*</to_order>
+                </storeurlparamorder_data>
+            </sales_convert_quote>
+        </fieldsets> 
+
+        <resources>
+            <shopix_storeurlparamorder>
+                <setup>
+                    <module>Shopix_StoreUrlParamOrder</module>
+                    <class>Mage_Sales_Model_Mysql4_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </shopix_storeurlparamorder>
+        </resources>
+    </global>
+
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <storeurlparamorder>
+                    <file>storeurlparamorder.xml</file>
+                </storeurlparamorder>
+            </updates>
+        </layout>
+
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <storeurlparamorder>
+                                            <title>Access Store URL Parameter with Order Module Section</title>
+                                        </storeurlparamorder>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+
+    <config>
+        <default>
+            <storeurlparamorder>
+                <general>
+                    <accept_params>group</accept_params>
+                </general>
+            </storeurlparamorder>
+        </default>
+    </config>
+
+</config>

@@ -1,0 +1,40 @@
+<?php
+/*
+ *   Shopix_StoreUrlParamOrder - Store URL Parameter Values with Order
+ *   Copyright (C) 2015 Shopix Pty Ltd (http://www.shopix.com.au)
+ *
+ *   This program is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU Affero General Public License as
+ *   published by the Free Software Foundation, either version 3 of the
+ *   License, or (at your option) any later version.
+ *
+ *   This program is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU Affero General Public License for more details.
+ *
+ *   You should have received a copy of the GNU Affero General Public License
+ *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+?>
+<?php $_order = $this->getOrder() ?>
+<?php
+$storeurlparamorderData = unserialize($_order->getStoreurlparamorderData());
+foreach ($storeurlparamorderData as $param => $value) {
+    $pairs[] = '<span class="param">'
+        . '<span class="name">' . $param . '</span>'
+        . '<span class="eq">' . $this->__(': ') . '</span>'
+        . '<span class="value">' . $value . '</span>'
+        . '</span>';
+}
+
+$urlParameters = '<span class="storeurlparamorder">'
+    . implode('<span class="sep">' . $this->__(', ') . '</span>', $pairs)
+    . '</span>';
+?>
+
+<tr>
+    <td class="label"><label><?php echo Mage::helper('storeurlparamorder')->__('URL Parameters') ?></label></td>
+    <td class="value"><strong><?php echo $urlParameters; ?></strong></td>
+</tr>
+

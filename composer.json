@@ -1,0 +1,23 @@
+{
+    "name": "shopix/storeurlparamorder",
+    "type": "magento-module",
+    "license": "GNU AFFERO",
+    "homepage": "https://github.com/shopixco/magento-url-param-order",
+    "description": "Magento Store URL Parameter Values with Order",
+    "authors": [
+	{
+	    "name": "Jan Tomka",
+	    "email": "jan@shopix.com.au",
+	}
+    ],
+    "require": {
+	"magento-hackathon/magento-composer-installer": "*"
+    },
+    "extra": {
+	"map": [
+	    ["app/code/community/Shopix/StoreUrlParamOrder", "app/code/community/Shopix/StoreUrlParamOrder"],
+	    ["app/design/adminhtml/default/default", "app/design/adminhtml/default/default"],
+	    ["app/etc/modules/Shopix_StoreUrlParamOrder.xml", "app/etc/modules/Shopix_StoreUrlParamOrder.xml"]
+	]
+    }
+}

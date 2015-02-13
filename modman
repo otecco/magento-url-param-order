@@ -1,0 +1,3 @@
+app/code/community/Shopix/StoreUrlParamOrder app/code/community/Shopix/StoreUrlParamOrder
+app/design/adminhtml/default/default app/design/adminhtml/default/default
+app/etc/modules/Shopix_StoreUrlParamOrder.xml app/etc/modules/Shopix_StoreUrlParamOrder.xml
